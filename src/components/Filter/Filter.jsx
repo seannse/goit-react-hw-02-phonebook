@@ -4,7 +4,7 @@ function Filter({ value, handleFilter }) {
   return (
     <div>
       <label className={css.label}>
-        <p>Find contacts by name</p>
+        <p className={css.p}>Find contacts by name</p>
         <input
           className={css.input}
           type="text"

@@ -9,7 +9,7 @@ const ContactList = ({ contactArr, handleDelete }) => {
         return (
           <li className={css.item} key={id}>
             <p>
-              {name}:{number}
+              {name}: {number}
             </p>
 
             <button
@@ -17,7 +17,7 @@ const ContactList = ({ contactArr, handleDelete }) => {
               type="button"
               onClick={() => handleDelete(id)}
             >
-              <RiDeleteBinLine />
+              <RiDeleteBinLine height="30px" width="30px" />
             </button>
           </li>
         );
