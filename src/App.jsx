@@ -15,7 +15,11 @@ export class App extends Component {
   };
 
   addContact = contactObj => {
-    if (this.state.contacts.some(({ name }) => name === contactObj.name)) {
+    if (
+      this.state.contacts.some(
+        ({ name }) => name.toLowerCase() === contactObj.name.toLowerCase()
+      )
+    ) {
       Notify.failure(`${contactObj.name} is already in contacts!`);
       return;
     }
@@ -31,13 +35,13 @@ export class App extends Component {
   };
 
   handleFilter = ({ target }) => {
-    const searchName = target.value.trim().toLowerCase();
+    const searchName = target.value.toLowerCase();
     this.setState({ filter: searchName });
   };
 
   filteredContacts = () => {
     return this.state.contacts.filter(contact =>
-      contact.name.toLowerCase().includes(this.state.filter)
+      contact.name.toLowerCase().includes(this.state.filter.trim())
     );
   };
 
@@ -48,13 +52,14 @@ export class App extends Component {
   };
 
   render() {
+    const { filter, contacts } = this.state;
     return (
       <div>
         <h1>Phonebook</h1>
         <ContactForm addContact={this.addContact} />
-        <Filter handleFilter={this.handleFilter} value={this.state.filter} />
+        <Filter handleFilter={this.handleFilter} value={filter} />
         <h2>Contacts</h2>
-        {this.state.contacts.length !== 0 ? (
+        {contacts.length !== 0 ? (
           <ContactList
             handleDelete={this.handleDelete}
             contactArr={this.filteredContacts()}

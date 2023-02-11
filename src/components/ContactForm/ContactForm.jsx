@@ -30,6 +30,13 @@ class ContactForm extends Component {
     this.reset();
   };
 
+  reset() {
+    this.setState({
+      name: '',
+      number: '',
+    });
+  }
+
   render() {
     return (
       <form className={css.form} onSubmit={this.handleSubmit}>
